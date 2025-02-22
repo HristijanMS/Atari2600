@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfw2iqfv3yqu5"]
+
+[ext_resource type="Script" path="res://Enemies/enemy_bullet_3.gd" id="1_sgsky"]
+[ext_resource type="Texture2D" uid="uid://umtd31xbwu4a" path="res://assets/enemy_bullet3.png" id="2_0m84n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve7ko"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6y3x"]
+size = Vector2(4, 4)
+
+[node name="enemy_bullet3" type="CharacterBody2D"]
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_sgsky")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_0m84n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ve7ko")
+disabled = true
+
+[node name="Hit" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit"]
+shape = SubResource("RectangleShape2D_f6y3x")
+
+[connection signal="body_entered" from="Hit" to="." method="_on_hit_body_entered"]
